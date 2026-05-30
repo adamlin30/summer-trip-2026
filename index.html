@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 関西の旅 ✈</title>
+<style>
+  /* ===== FONTS ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Shippori+Mincho+B1:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+  /* ===== CSS VARIABLES ===== */
+  :root {
+    --ink: #1a1a2e;
+    --deep: #0d1117;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --red: #c0392b;
+    --red-light: #e74c3c;
+    --paper: #f5f0e8;
+    --paper-dark: #e8e0d0;
+    --muted: #8a8a9a;
+    --white: #fdfcf9;
+    --accent-blue: #2980b9;
+    --green: #27ae60;
+    --border: rgba(201,168,76,0.3);
+  }
+
+  /* ===== RESET & BASE ===== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== WASHI PAPER TEXTURE ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(180deg, #0d1117 0%, #1a1a2e 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 20px 16px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 30px rgba(201,168,76,0.15);
+  }
+
+  .header-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .header-sub {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-top: 2px;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .family-badge {
+    font-size: 0.7rem;
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== NAV TABS ===== */
+  .nav-tabs {
+    display: flex;
+    gap: 2px;
+    background: var(--deep);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .nav-tab {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    font-size: 0.75rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-tab.active {
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .nav-tab:hover:not(.active) {
+    color: var(--white);
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== PAGE SECTIONS ===== */
+  .page { display: none; animation: fadeIn 0.3s ease; }
+  .page.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .card-header {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+  }
+
+  .card-header:hover { background: rgba(201,168,76,0.04); }
+
+  .card-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-body.open { display: block; }
+
+  .card-toggle {
+    margin-left: auto;
+    color: var(--gold);
+    font-size: 1rem;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .card-toggle.open { transform: rotate(90deg); }
+
+  /* ===== DAY INDICATOR ===== */
+  .day-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .day-num .num { font-size: 1.1rem; }
+  .day-num .label { font-size: 0.45rem; letter-spacing: 0.05em; }
+
+  .day-info { flex: 1; min-width: 0; }
+
+  .day-date {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    font-family: 'Shippori Mincho B1', serif;
+    letter-spacing: 0.08em;
+  }
+
+  .day-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .day-region {
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ===== SECTION WITHIN CARD BODY ===== */
+  .section-block {
+    margin-top: 14px;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== SPOT ITEMS ===== */
+  .spot-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .spot-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .spot-item.shrine { border-left-color: var(--red); }
+  .spot-item.nature { border-left-color: var(--green); }
+  .spot-item.castle { border-left-color: var(--accent-blue); }
+  .spot-item.culture { border-left-color: #9b59b6; }
+  .spot-item.onsen { border-left-color: #e67e22; }
+  .spot-item.transport { border-left-color: var(--muted); }
+
+  .spot-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+  .spot-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .spot-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .spot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: var(--gold);
+    text-decoration: none;
+    margin-top: 4px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+
+  .spot-link:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  /* ===== ALERTS / REMINDERS ===== */
+  .alert {
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .alert.warn {
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.4);
+  }
+
+  .alert.info {
+    background: rgba(41,128,185,0.1);
+    border: 1px solid rgba(41,128,185,0.3);
+  }
+
+  .alert.tip {
+    background: rgba(39,174,96,0.1);
+    border: 1px solid rgba(39,174,96,0.3);
+  }
+
+  .alert.gold {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+  }
+
+  .alert-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  .alert-body { flex: 1; }
+
+  .alert-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .alert-text {
+    font-size: 0.73rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ===== MEAL PILLS ===== */
+  .meal-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .meal-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 0.72rem;
+    color: var(--paper-dark);
+  }
+
+  .meal-pill .meal-type {
+    font-size: 0.6rem;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== HOTEL CARD ===== */
+  .hotel-box {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .hotel-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  .hotel-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    font-family: 'Shippori Mincho B1', serif;
+  }
+
+  .hotel-addr {
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .hotel-tel {
+    font-size: 0.72rem;
+    color: var(--accent-blue);
+    margin-top: 4px;
+  }
+
+  /* ===== INFO GRID (homepage) ===== */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .info-tile {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .info-tile .tile-icon { font-size: 1.8rem; margin-bottom: 6px; }
+  .info-tile .tile-label { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; }
+  .info-tile .tile-val { font-size: 0.9rem; color: var(--white); font-weight: 500; margin-top: 2px; }
+
+  /* ===== FLIGHT BANNER ===== */
+  .flight-banner {
+    background: linear-gradient(135deg, rgba(41,128,185,0.15), rgba(41,128,185,0.05));
+    border: 1px solid rgba(41,128,185,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .flight-code {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+  }
+
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .flight-city {
+    font-size: 0.85rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .flight-arrow { color: var(--gold); font-size: 0.8rem; }
+
+  .flight-time {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== LINK LIST ===== */
+  .link-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.2s;
+  }
+
+  .link-row:hover {
+    background: rgba(201,168,76,0.06);
+    border-color: var(--border);
+  }
+
+  .link-row-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .link-row-name { font-size: 0.85rem; flex: 1; }
+  .link-row-arrow { color: var(--gold); font-size: 0.8rem; }
+
+  /* ===== PASS CARD ===== */
+  .pass-card {
+    background: linear-gradient(135deg, rgba(192,57,43,0.15), rgba(201,168,76,0.1));
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .pass-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1rem;
+    color: var(--red-light);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .pass-days { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+  .pass-day {
+    font-size: 0.68rem;
+    background: rgba(192,57,43,0.2);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 12px;
+    padding: 2px 8px;
+    color: #e88;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== TRANSPORT BOX ===== */
+  .transport-box {
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.77rem;
+    color: var(--paper-dark);
+    line-height: 1.7;
+  }
+
+  .transport-box b { color: var(--gold-light); }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 12px 0;
+  }
+
+  /* ===== PAGE TITLE ===== */
+  .page-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ===== RESERVATION BOX ===== */
+  .reserv-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.75rem;
+    color: var(--paper-dark);
+    line-height: 1.8;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .reserv-box .reserv-label {
+    font-size: 0.62rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .reserv-box b { color: var(--white); }
+
+  /* ===== HOMEPAGE HERO ===== */
+  .hero {
+    text-align: center;
+    padding: 24px 0 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .hero-kamon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    animation: floatKamon 4s ease-in-out infinite;
+  }
+
+  @keyframes floatKamon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .hero-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-dates {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 16px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== TIMELINE (schedule overview) ===== */
+  .timeline { position: relative; padding-left: 16px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.1));
+  }
+
+  .tl-item {
+    position: relative;
+    padding: 0 0 16px 20px;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--ink);
+  }
+
+  .tl-date {
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+    font-family: 'Shippori Mincho B1', serif;
+  }
+
+  .tl-content {
+    font-size: 0.82rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .tl-detail {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  /* ===== TICKET PRICE ===== */
+  .ticket-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px dotted rgba(255,255,255,0.08);
+    font-size: 0.78rem;
+  }
+
+  .ticket-name { color: var(--paper-dark); }
+  .ticket-price { color: var(--gold-light); font-weight: 500; }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 2px; }
+
+  /* ===== BADGE ===== */
+  .badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  .badge.red { background: rgba(192,57,43,0.3); color: #e88; border: 1px solid rgba(192,57,43,0.4); }
+  .badge.green { background: rgba(39,174,96,0.2); color: #6e9; border: 1px solid rgba(39,174,96,0.3); }
+  .badge.blue { background: rgba(41,128,185,0.2); color: #6af; border: 1px solid rgba(41,128,185,0.3); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 400px) {
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-title">⛩ 関西・広島の旅</div>
+      <div class="header-sub">2026 SUMMER FAMILY TRIP</div>
+    </div>
+    <div class="header-right">
+      <div class="family-badge">👨‍👩‍👧‍👦 4名 · 6/30〜7/9</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs" id="mainNav">
+  <button class="nav-tab active" onclick="showPage('home', this)">🏠 ホーム</button>
+  <button class="nav-tab" onclick="showPage('overview', this)">📅 概要</button>
+  <button class="nav-tab" onclick="showPage('day630', this)">6/30</button>
+  <button class="nav-tab" onclick="showPage('day701', this)">7/1</button>
+  <button class="nav-tab" onclick="showPage('day702', this)">7/2</button>
+  <button class="nav-tab" onclick="showPage('day703', this)">7/3</button>
+  <button class="nav-tab" onclick="showPage('day704', this)">7/4</button>
+  <button class="nav-tab" onclick="showPage('day705', this)">7/5</button>
+  <button class="nav-tab" onclick="showPage('day706', this)">7/6</button>
+  <button class="nav-tab" onclick="showPage('day707', this)">7/7</button>
+  <button class="nav-tab" onclick="showPage('day708', this)">7/8</button>
+  <button class="nav-tab" onclick="showPage('day709', this)">7/9</button>
+</nav>
+
+<main>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-kamon">⛩</div>
+    <div class="hero-title">2026 関西の旅</div>
+    <div class="hero-sub">林家族 · 10日間 · 4名</div>
+    <div class="hero-dates">2026年6月30日(火) 〜 7月9日(木)</div>
+  </div>
+
+  <!-- Key Info Grid -->
+  <div class="info-grid">
+    <div class="info-tile">
+      <div class="tile-icon">✈️</div>
+      <div class="tile-label">往路フライト</div>
+      <div class="tile-val">AK170</div>
+      <div class="tile-label" style="margin-top:2px">08:30 → 12:40</div>
+    </div>
+    <div class="info-tile">
+      <div class="tile-icon">✈️</div>
+      <div class="tile-label">復路フライト</div>
+      <div class="tile-val">AK171</div>
+      <div class="tile-label" style="margin-top:2px">13:45 → 16:00</div>
+    </div>
+    <div class="info-tile">
+      <div class="tile-icon">🏨</div>
+      <div class="tile-label">ホテル数</div>
+      <div class="tile-val">3ヶ所</div>
+      <div class="tile-label" style="margin-top:2px">コンフォートホテル</div>
+    </div>
+    <div class="info-tile">
+      <div class="tile-icon">👨‍👩‍👧‍👦</div>
+      <div class="tile-label">旅行人数</div>
+      <div class="tile-val">4名</div>
+      <div class="tile-label" style="margin-top:2px">大人2・子ども2</div>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="section-label">⚠️ 重要リマインダー</div>
+
+  <div class="alert warn">
+    <div class="alert-icon">🚢</div>
+    <div class="alert-body">
+      <div class="alert-title">呉湾艦船めぐり 要事前予約</div>
+      <div class="alert-text">7/6(月) 5便 14:00出発。事前にオンライン予約が必要です。<br>→ <a href="https://bunker-supply.com/service/sightseeing_cruise/" style="color:var(--gold)">予約サイト</a></div>
+    </div>
+  </div>
+
+  <div class="alert warn">
+    <div class="alert-icon">🚗</div>
+    <div class="alert-body">
+      <div class="alert-title">レンタカー予約（7/1）</div>
+      <div class="alert-text">
+        会社：ニッポンレンタカー｜予約番号：<b style="color:var(--white)">130016003</b><br>
+        パスワード：<b style="color:var(--white)">09ebf807</b><br>
+        貸出：07:01 08:30 ／ 返却：07:01 18:00
+      </div>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">🎫</div>
+    <div class="alert-body">
+      <div class="alert-title">関西＆広島地区鉄道周遊券</div>
+      <div class="alert-text">7/3(木)〜7/7(月) 5日間有効。乗車前に必ず開通手続きを！</div>
+    </div>
+  </div>
+
+  <div class="alert tip">
+    <div class="alert-icon">♨️</div>
+    <div class="alert-body">
+      <div class="alert-title">つぼ湯 当日受付</div>
+      <div class="alert-text">湯の峰温泉のつぼ湯は当日現地で整理券を受け取ります。早めの訪問を推奨。</div>
+    </div>
+  </div>
+
+  <!-- Hotel Summary -->
+  <div class="section-label" style="margin-top:16px">🏨 ホテル一覧</div>
+
+  <div class="hotel-box">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル紀伊田辺</div>
+      <div class="hotel-addr">〒646-0031 和歌山県田辺市湊47-31</div>
+      <div class="hotel-tel">📞 0739-22-6111</div>
+      <div style="font-size:0.68rem;color:var(--gold);margin-top:4px">6/30〜7/2 (3泊)</div>
+    </div>
+  </div>
+
+  <div class="hotel-box">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル和歌山</div>
+      <div class="hotel-addr">〒640-8342 和歌山県和歌山市友田町5丁目34-1</div>
+      <div class="hotel-tel">📞 073-426-8911</div>
+      <div style="font-size:0.68rem;color:var(--gold);margin-top:4px">7/3〜7/4 (2泊)</div>
+    </div>
+  </div>
+
+  <div class="hotel-box">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル新大阪</div>
+      <div class="hotel-addr">〒532-0011 大阪府大阪市淀川区西中島5丁目3-7</div>
+      <div class="hotel-tel">📞 06-6305-1911</div>
+      <div style="font-size:0.68rem;color:var(--gold);margin-top:4px">7/5〜7/8 (4泊)</div>
+    </div>
+  </div>
+
+  <!-- Useful Links -->
+  <div class="section-label" style="margin-top:16px">🔗 よく使うリンク</div>
+  <div class="link-list">
+    <a href="https://transit.yahoo.co.jp/" class="link-row">
+      <span class="link-row-icon">🚃</span>
+      <span class="link-row-name">乗換案内（Yahoo!）</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://www.westjr.co.jp/travel-information/tc/tickets-passes/jrwest-rail-pass/" class="link-row">
+      <span class="link-row-icon">🎫</span>
+      <span class="link-row-name">JR西日本 鉄道周遊券</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://www.choice-hotels.jp/hotel/kiitanabe/" class="link-row">
+      <span class="link-row-icon">🏨</span>
+      <span class="link-row-name">コンフォートホテル紀伊田辺</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://www.choice-hotels.jp/hotel/wakayama/" class="link-row">
+      <span class="link-row-icon">🏨</span>
+      <span class="link-row-name">コンフォートホテル和歌山</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://www.choice-hotels.jp/hotel/shin-osaka/" class="link-row">
+      <span class="link-row-icon">🏨</span>
+      <span class="link-row-name">コンフォートホテル新大阪</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://meikobus.jp/scheduled/shirahama/" class="link-row">
+      <span class="link-row-icon">🚌</span>
+      <span class="link-row-name">明光バス（白浜路線）</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://kumanogobobus.nankai-nanki.jp/" class="link-row">
+      <span class="link-row-icon">🚌</span>
+      <span class="link-row-name">熊野ごぼバス（那智山線）</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="http://rinkan.co.jp/koyasan/route/" class="link-row">
+      <span class="link-row-icon">🚌</span>
+      <span class="link-row-name">南海りんかんバス（高野山）</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://bunker-supply.com/service/sightseeing_cruise/" class="link-row">
+      <span class="link-row-icon">🚢</span>
+      <span class="link-row-name">呉湾艦船めぐり（予約）</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+    <a href="https://www.hozugawakudari.jp/" class="link-row">
+      <span class="link-row-icon">🛶</span>
+      <span class="link-row-name">保津川下り</span>
+      <span class="link-row-arrow">›</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== OVERVIEW PAGE ===== -->
+<div id="overview" class="page">
+  <div class="page-title">📅 旅行概要</div>
+
+  <!-- Rail Pass -->
+  <div class="pass-card">
+    <div class="pass-title">🎫 関西＆広島地区鉄道周遊券</div>
+    <div class="alert-text" style="font-size:0.78rem;color:var(--paper-dark)">5日間有効。乗車前に必ず改札で開通すること。</div>
+    <div class="pass-days">
+      <span class="pass-day">7/3(木) 第1日目</span>
+      <span class="pass-day">7/4(金) 第2日目</span>
+      <span class="pass-day">7/5(土) 第3日目</span>
+      <span class="pass-day">7/6(日) 第4日目</span>
+      <span class="pass-day">7/7(月) 第5日目</span>
+    </div>
+  </div>
+
+  <!-- Day by Day Overview -->
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">6/30(火)</div>
+      <div class="tl-content">✈ 出発日 · 紀伊田辺着</div>
+      <div class="tl-detail">AK170 08:30→12:40 関西空港着 → 紀伊田辺へ</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/1(水)</div>
+      <div class="tl-content">🌿 熊野本宮大社</div>
+      <div class="tl-detail">湯の峰温泉つぼ湯・熊野本宮大社・大斎原｜レンタカー利用</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/2(木)</div>
+      <div class="tl-content">🌊 白浜海岸</div>
+      <div class="tl-detail">崎之湯・三段壁・千畳敷・円月島｜明光バス利用</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/3(金)</div>
+      <div class="tl-content">⛩ 熊野那智大社 <span class="badge red">Pass 1日目</span></div>
+      <div class="tl-detail">那智大社・那智の滝・那智山線バス｜→和歌山市泊</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/4(土)</div>
+      <div class="tl-content">🗻 高野山 <span class="badge red">Pass 2日目</span></div>
+      <div class="tl-detail">奥の院・金剛峯寺・大門｜南海りんかんバス</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/5(日)</div>
+      <div class="tl-content">🏯 和歌山城 <span class="badge red">Pass 3日目</span></div>
+      <div class="tl-detail">和歌山城見学後 → 新大阪へ移動</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/6(月)</div>
+      <div class="tl-content">⚓ 広島・呉市 <span class="badge red">Pass 4日目</span></div>
+      <div class="tl-detail">大和ミュージアム・てつのくじら館・呉湾艦船めぐり</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/7(火)</div>
+      <div class="tl-content">⛩ 宮島・厳島神社 <span class="badge red">Pass 5日目</span></div>
+      <div class="tl-detail">厳島神社・弥山・福山城</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/8(水)</div>
+      <div class="tl-content">🛶 京都・保津川下り</div>
+      <div class="tl-detail">保津川下り（亀岡→嵐山）</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7/9(木)</div>
+      <div class="tl-content">✈ 帰国日</div>
+      <div class="tl-detail">AK171 13:45→16:00 関西空港発</div>
+    </div>
+  </div>
+
+  <!-- Ticket Prices -->
+  <div class="section-label" style="margin-top:20px">💴 入場料・チケット参考</div>
+  <div class="card" style="margin-bottom:0">
+    <div class="card-body open" style="padding:14px 16px;">
+      <div class="ticket-row">
+        <span class="ticket-name">高野山バス一日乗車券</span>
+        <span class="ticket-price">大人 ¥1,500 / 子 ¥750</span>
+      </div>
+      <div class="ticket-row">
+        <span class="ticket-name">那智エリア世界遺産フリー乗車券</span>
+        <span class="ticket-price">大人 ¥1,260 / 子 ¥630</span>
+      </div>
+      <div class="ticket-row">
+        <span class="ticket-name">白浜とくとくフリー乗車券</span>
+        <span class="ticket-price">明光バス公式確認</span>
+      </div>
+      <div class="ticket-row">
+        <span class="ticket-name">宮島ロープウェー（弥山）</span>
+        <span class="ticket-price">公式サイト確認</span>
+      </div>
+      <div class="ticket-row" style="border-bottom:none">
+        <span class="ticket-name">保津川下り</span>
+        <span class="ticket-price">公式サイト確認</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 6/30 ===== -->
+<div id="day630" class="page">
+  <div class="page-title">✈ 6月30日(火) — 出発日</div>
+
+  <div class="flight-banner">
+    <div class="flight-code">AK170</div>
+    <div>
+      <div class="flight-route">
+        <span class="flight-city">🇹🇼 高雄(KHH)</span>
+        <span class="flight-arrow">→</span>
+        <span class="flight-city">🇯🇵 関西(KIX)</span>
+      </div>
+      <div class="flight-time">08:30 出発 → 12:40 到着</div>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">🚃</div>
+    <div class="alert-body">
+      <div class="alert-title">関西空港 → 紀伊田辺</div>
+      <div class="alert-text">特急くろしお利用。関西空港駅から約2時間。乗換案内で最新時刻を確認。</div>
+    </div>
+  </div>
+
+  <div class="section-label">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>関西空港内</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>紀伊田辺市内</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル紀伊田辺</div>
+      <div class="hotel-addr">〒646-0031 和歌山県田辺市湊47-31</div>
+      <div class="hotel-tel">📞 0739-22-6111</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/1 ===== -->
+<div id="day701" class="page">
+  <div class="page-title">🌿 7月1日(水) — 熊野本宮大社</div>
+
+  <div class="alert warn">
+    <div class="alert-icon">🚗</div>
+    <div class="alert-body">
+      <div class="alert-title">レンタカー ⚠️ 要確認</div>
+      <div class="alert-text">
+        ニッポンレンタカー｜禁煙・スタンダードクラス（フィット等）<br>
+        予約番号：<b style="color:var(--white)">130016003</b>｜PW：<b style="color:var(--white)">09ebf807</b><br>
+        貸出 08:30 → 返却 18:00
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item onsen">
+      <div class="spot-icon">♨️</div>
+      <div>
+        <div class="spot-name">湯の峰温泉 つぼ湯</div>
+        <div class="spot-desc">世界遺産に登録された温泉。小さな岩風呂で入浴時間は30分。整理券は当日現地受取。</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+          <a href="https://maps.app.goo.gl/GaWRBaLKtJ7Cfwmg9" class="spot-link">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">⛩</div>
+      <div>
+        <div class="spot-name">熊野本宮大社</div>
+        <div class="spot-desc">熊野三山のひとつ。日本最古の神社の一つで、熊野古道の終点。</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+          <a href="https://www.hongutaisha.jp/" class="spot-link">🌐 公式サイト</a>
+          <a href="https://maps.app.goo.gl/khgFCRrnpuVExATX7" class="spot-link">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">🏛</div>
+      <div>
+        <div class="spot-name">世界遺産 熊野本宮館</div>
+        <div class="spot-desc">熊野古道や熊野三山の歴史を展示する資料館。</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+          <a href="https://maps.app.goo.gl/Yp5xueR6N5vLMnfu5" class="spot-link">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">🌿</div>
+      <div>
+        <div class="spot-name">大斎原（おおゆのはら）</div>
+        <div class="spot-desc">熊野本宮大社の旧社地。日本最大の鳥居がそびえる神聖な場所。</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+          <a href="https://www.hongu.jp/kumanokodo/hongu-taisya/ooyunohara/" class="spot-link">🌐 詳細</a>
+          <a href="https://maps.app.goo.gl/V1tMZYrdf7w6GpY19" class="spot-link">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🚗 駐車場</div>
+  <div class="transport-box">
+    <b>熊野本宮大社 河川敷駐車場</b> — 無料・広めの駐車スペース<br>
+    <a href="https://maps.app.goo.gl/ZHAhVX9tZR7CyYCU8" style="color:var(--gold)">📍 Google Maps</a>
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>自由（本宮周辺）</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>紀伊田辺市内</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル紀伊田辺</div>
+      <div class="hotel-addr">〒646-0031 和歌山県田辺市湊47-31</div>
+      <div class="hotel-tel">📞 0739-22-6111</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/2 ===== -->
+<div id="day702" class="page">
+  <div class="page-title">🌊 7月2日(木) — 白浜</div>
+
+  <div class="section-label">🚌 交通（明光バス）</div>
+  <div class="transport-box">
+    <b>田辺駅前</b> → 白浜バスセンター → 三段壁<br>
+    白浜駅前 → とれとれ市場 → 白浜バスセンター → 三段壁<br><br>
+    <a href="https://meikobus.jp/scheduled/shirahama/free/" class="spot-link" style="margin-right:8px">🎫 フリー乗車券</a>
+    <a href="https://meikobus.jp/common/pdf/scheduled/shirahama/timetable16.pdf" class="spot-link">📄 時刻表</a>
+  </div>
+
+  <div class="section-label" style="margin-top:14px">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item onsen">
+      <div class="spot-icon">♨️</div>
+      <div>
+        <div class="spot-name">崎の湯</div>
+        <div class="spot-desc">日本最古の温泉のひとつ。海に面した露天風呂で絶景を楽しめる。</div>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">🌊</div>
+      <div>
+        <div class="spot-name">三段壁</div>
+        <div class="spot-desc">高さ50mの断崖絶壁。エレベーターで洞窟（三段壁洞窟）へ降りられる。</div>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">🪨</div>
+      <div>
+        <div class="spot-name">千畳敷</div>
+        <div class="spot-desc">波に浸食された広大な岩棚。千枚の畳が敷けるほどの広さが名前の由来。</div>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">🌅</div>
+      <div>
+        <div class="spot-name">円月島（高島）</div>
+        <div class="spot-desc">白浜のシンボル。真ん中に円形の穴がある奇岩で、夕景が美しい。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>自由（白浜周辺）</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>紀伊田辺市内</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル紀伊田辺</div>
+      <div class="hotel-addr">〒646-0031 和歌山県田辺市湊47-31</div>
+      <div class="hotel-tel">📞 0739-22-6111</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/3 ===== -->
+<div id="day703" class="page">
+  <div class="page-title">⛩ 7月3日(金) — 熊野那智大社 <span class="badge red">Pass 1日目</span></div>
+
+  <div class="section-label">🚌 バス（熊野ごぼバス 那智山線）</div>
+  <div class="transport-box">
+    <b>去程：</b>紀伊勝浦駅 <b>10:25</b> 発 → 那智山<br>
+    <b>回程：</b>那智山 <b>15:42</b> 発<br><br>
+    <b>那智エリア世界遺産フリー乗車券</b><br>
+    大人 ¥1,260 ／ 子ども ¥630<br><br>
+    <a href="https://kumanogobobus.nankai-nanki.jp/tickets/%e9%82%a3%e6%99%ba%e3%82%a8%e3%83%aa%e3%82%a2%e4%b8%96%e7%95%8c%e9%81%ba%e7%94%a3%e3%83%95%e3%83%aa%e3%83%bc%e4%b9%97%e8%bb%8a%e5%88%b8-2/" class="spot-link">🎫 乗車券購入</a>
+  </div>
+
+  <div class="alert tip">
+    <div class="alert-icon">🥾</div>
+    <div class="alert-body">
+      <div class="alert-title">モデルコース（脚力に自信がない方向け）</div>
+      <div class="alert-text">バスで那智山終点 → 那智大社参拝・五重塔 → 徒歩で那智の滝へ（30〜40分）→ バスまたは徒歩で大門坂・熊野古道へ</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:14px">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">⛩</div>
+      <div>
+        <div class="spot-name">熊野那智大社</div>
+        <div class="spot-desc">熊野三山のひとつ。那智山の中腹に鎮座し、日本一の落差を誇る那智の滝を御神体とする。</div>
+        <a href="https://kumanonachitaisha.or.jp/" class="spot-link">🌐 公式サイト</a>
+      </div>
+    </div>
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">🗼</div>
+      <div>
+        <div class="spot-name">青岸渡寺・三重塔</div>
+        <div class="spot-desc">那智大社に隣接する寺院。那智の滝を背景にした三重塔の写真は絶好の撮影スポット。</div>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">💧</div>
+      <div>
+        <div class="spot-name">那智の滝（飛瀧神社）</div>
+        <div class="spot-desc">落差133m、日本三大名瀑のひとつ。滝壺近くまで近づける。</div>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">🌿</div>
+      <div>
+        <div class="spot-name">大門坂（熊野古道）</div>
+        <div class="spot-desc">石畳の古道。鬱蒼とした樹齢数百年の杉並木が続く幻想的な道。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>自由</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>紀伊田辺市内</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル和歌山</div>
+      <div class="hotel-addr">〒640-8342 和歌山県和歌山市友田町5丁目34-1</div>
+      <div class="hotel-tel">📞 073-426-8911</div>
+      <div style="font-size:0.68rem;color:#e88;margin-top:4px">⚠ 本日よりホテル変更（和歌山市内）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/4 ===== -->
+<div id="day704" class="page">
+  <div class="page-title">🗻 7月4日(土) — 高野山 <span class="badge red">Pass 2日目</span></div>
+
+  <div class="section-label">🚌 バス（南海りんかんバス）</div>
+  <div class="transport-box">
+    <b>おすすめルート：</b><br>
+    高野山駅前 → 奥の院前 → 金剛峯寺前 → 大門 → 高野山駅前<br><br>
+    <b>一日フリー乗車券：</b>大人 ¥1,500 ／ 小児 ¥750<br><br>
+    <a href="https://kensaku.nankai.co.jp/pc/T5?USR=PC&slCode=683-0&d=1&dw=0" class="spot-link">🔍 南海電鉄時刻検索</a>
+    <a href="http://rinkan.co.jp/koyasan/route/" class="spot-link" style="margin-left:6px">🗺 路線図</a>
+  </div>
+
+  <div class="section-label" style="margin-top:14px">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">🌿</div>
+      <div>
+        <div class="spot-name">奥の院</div>
+        <div class="spot-desc">弘法大師御廟がある高野山の聖地。20万基以上の墓碑や供養塔が並ぶ神秘的な杉林。</div>
+      </div>
+    </div>
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">⛩</div>
+      <div>
+        <div class="spot-name">金剛峯寺</div>
+        <div class="spot-desc">高野山真言宗の総本山。豊臣秀次ゆかりの建物で、国内最大級の石庭がある。</div>
+      </div>
+    </div>
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">🏯</div>
+      <div>
+        <div class="spot-name">大門</div>
+        <div class="spot-desc">高野山の総門。高さ約25mの壮大な門で、仁王像が左右に安置されている。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>高野山内</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>和歌山市内</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル和歌山</div>
+      <div class="hotel-addr">〒640-8342 和歌山県和歌山市友田町5丁目34-1</div>
+      <div class="hotel-tel">📞 073-426-8911</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/5 ===== -->
+<div id="day705" class="page">
+  <div class="page-title">🏯 7月5日(日) — 和歌山城 <span class="badge red">Pass 3日目</span></div>
+
+  <div class="section-label">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item castle">
+      <div class="spot-icon">🏯</div>
+      <div>
+        <div class="spot-name">和歌山城</div>
+        <div class="spot-desc">紀州徳川家の居城。天守閣からは和歌山市内を一望できる。城内に動物園もあり、子どもも楽しめる。</div>
+        <a href="https://wakayamajo.jp/" class="spot-link">🌐 公式サイト</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">🚃</div>
+    <div class="alert-body">
+      <div class="alert-title">和歌山 → 新大阪 移動</div>
+      <div class="alert-text">本日夕方、新大阪へ移動。JR特急くろしお利用。乗換案内で時刻を確認。</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>和歌山市内</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>新大阪駅周辺</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル新大阪</div>
+      <div class="hotel-addr">〒532-0011 大阪府大阪市淀川区西中島5丁目3-7</div>
+      <div class="hotel-tel">📞 06-6305-1911</div>
+      <div style="font-size:0.68rem;color:#e88;margin-top:4px">⚠ 本日よりホテル変更（新大阪）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/6 ===== -->
+<div id="day706" class="page">
+  <div class="page-title">⚓ 7月6日(月) — 広島・呉市 <span class="badge red">Pass 4日目</span></div>
+
+  <div class="alert warn">
+    <div class="alert-icon">🚢</div>
+    <div class="alert-body">
+      <div class="alert-title">⚠️ 要事前予約！呉湾艦船めぐり</div>
+      <div class="alert-text">5便 <b style="color:var(--white)">14:00出発</b>。人気のため事前予約必須。<br>→ <a href="https://bunker-supply.com/service/sightseeing_cruise/" style="color:var(--gold)">予約サイトはこちら</a></div>
+    </div>
+  </div>
+
+  <div class="section-label">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item culture">
+      <div class="spot-icon">⚓</div>
+      <div>
+        <div class="spot-name">大和ミュージアム</div>
+        <div class="spot-desc">10分の1スケールの戦艦大和が展示。呉市の近代造船業の歴史を学べる。子どもに大人気。</div>
+        <a href="https://yamato-museum.com/" class="spot-link">🌐 公式サイト</a>
+      </div>
+    </div>
+
+    <div class="spot-item culture">
+      <div class="spot-icon">🐋</div>
+      <div>
+        <div class="spot-name">てつのくじら館</div>
+        <div class="spot-desc">実物の潜水艦「あきしお」が展示。館内に入って艦内を見学できる。無料。</div>
+      </div>
+    </div>
+
+    <div class="spot-item culture">
+      <div class="spot-icon">🚢</div>
+      <div>
+        <div class="spot-name">呉湾艦船めぐり</div>
+        <div class="spot-desc">呉港に停泊する護衛艦・潜水艦を間近で見学できるクルーズ。<b style="color:#e88">14:00便 要予約</b></div>
+        <a href="https://bunker-supply.com/service/sightseeing_cruise/" class="spot-link">🌐 予約・詳細</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>youme Town 呉店</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>広島駅周辺</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル新大阪</div>
+      <div class="hotel-addr">〒532-0011 大阪府大阪市淀川区西中島5丁目3-7</div>
+      <div class="hotel-tel">📞 06-6305-1911</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/7 ===== -->
+<div id="day707" class="page">
+  <div class="page-title">⛩ 7月7日(火) — 宮島・広島 <span class="badge red">Pass 5日目</span></div>
+
+  <div class="section-label">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item shrine">
+      <div class="spot-icon">⛩</div>
+      <div>
+        <div class="spot-name">厳島神社</div>
+        <div class="spot-desc">海上に浮かぶ朱色の大鳥居で有名な世界遺産。満潮時と干潮時で全く違う景色を楽しめる。</div>
+        <a href="https://www.itsukushimajinja.jp/" class="spot-link">🌐 公式サイト</a>
+      </div>
+    </div>
+
+    <div class="spot-item nature">
+      <div class="spot-icon">⛰</div>
+      <div>
+        <div class="spot-name">弥山</div>
+        <div class="spot-desc">宮島の最高峰（535m）。ロープウェーで山頂近くまで行け、瀬戸内海を一望できる。</div>
+        <a href="https://miyajima-ropeway.info/" class="spot-link">🚡 ロープウェー</a>
+      </div>
+    </div>
+
+    <div class="spot-item castle">
+      <div class="spot-icon">🏯</div>
+      <div>
+        <div class="spot-name">福山城</div>
+        <div class="spot-desc">2022年に大天守が復元された美しい城。在来線で広島から約30分。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>表参道（宮島）</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>広島駅周辺</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル新大阪</div>
+      <div class="hotel-addr">〒532-0011 大阪府大阪市淀川区西中島5丁目3-7</div>
+      <div class="hotel-tel">📞 06-6305-1911</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/8 ===== -->
+<div id="day708" class="page">
+  <div class="page-title">🛶 7月8日(水) — 京都・保津川下り</div>
+
+  <div class="section-label">🚃 アクセス</div>
+  <div class="transport-box">
+    新大阪 → JR山陰本線 → 亀岡駅（乗船場へ）<br>
+    下船後、嵐山駅から新大阪へ戻る<br><br>
+    <a href="https://www.hozugawakudari.jp/blog/%E4%BF%9D%E6%B4%A5%E5%B7%9D%E4%B8%8B%E3%82%8A%E3%83%BB%E3%83%BB%E3%83%BB" class="spot-link">🚃 JRアクセス案内</a>
+  </div>
+
+  <div class="section-label" style="margin-top:14px">📍 スポット</div>
+  <div class="spot-list">
+
+    <div class="spot-item nature">
+      <div class="spot-icon">🛶</div>
+      <div>
+        <div class="spot-name">保津川下り</div>
+        <div class="spot-desc">亀岡から嵐山まで約16kmを約2時間で下る川下り。船頭の巧みな操船と渓谷の絶景が楽しめる。子どもも大興奮！</div>
+        <a href="https://www.hozugawakudari.jp/" class="spot-link">🌐 公式サイト・予約</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-top:14px">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>京都駅周辺</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>新大阪駅周辺</div>
+  </div>
+
+  <div class="hotel-box" style="margin-top:14px">
+    <div class="hotel-icon">🏨</div>
+    <div>
+      <div class="hotel-name">コンフォートホテル新大阪</div>
+      <div class="hotel-addr">〒532-0011 大阪府大阪市淀川区西中島5丁目3-7</div>
+      <div class="hotel-tel">📞 06-6305-1911</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 7/9 ===== -->
+<div id="day709" class="page">
+  <div class="page-title">✈ 7月9日(木) — 帰国日</div>
+
+  <div class="alert gold">
+    <div class="alert-icon">⏰</div>
+    <div class="alert-body">
+      <div class="alert-title">出発 3時間前には関西空港へ</div>
+      <div class="alert-text">AK171 13:45発 → 新大阪からはるか利用（約75分）。空港には遅くとも10:30着を目標に。</div>
+    </div>
+  </div>
+
+  <div class="flight-banner">
+    <div class="flight-code">AK171</div>
+    <div>
+      <div class="flight-route">
+        <span class="flight-city">🇯🇵 関西(KIX)</span>
+        <span class="flight-arrow">→</span>
+        <span class="flight-city">🇹🇼 高雄(KHH)</span>
+      </div>
+      <div class="flight-time">13:45 出発 → 16:00 到着</div>
+    </div>
+  </div>
+
+  <div class="section-label">🍽 食事</div>
+  <div class="meal-row">
+    <div class="meal-pill"><span class="meal-type">昼</span>関西空港内</div>
+    <div class="meal-pill"><span class="meal-type">夜</span>高雄に戻ってから</div>
+  </div>
+
+  <div class="alert tip">
+    <div class="alert-icon">🛍</div>
+    <div class="alert-body">
+      <div class="alert-title">お土産・免税ショッピング</div>
+      <div class="alert-text">関西空港には充実したお土産店と免税店があります。搭乗2時間前には保安検査を通過しておきましょう。</div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+  // Tab navigation
+  function showPage(pageId, tabEl) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+
+    // Show selected
+    document.getElementById(pageId).classList.add('active');
+    tabEl.classList.add('active');
+
+    // Scroll tab into view
+    tabEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+    // Scroll to top of content
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Card toggle (expand/collapse)
+  document.querySelectorAll('.card-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const toggle = header.querySelector('.card-toggle');
+      if (body && body.classList.contains('card-body')) {
+        body.classList.toggle('open');
+        if (toggle) toggle.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
